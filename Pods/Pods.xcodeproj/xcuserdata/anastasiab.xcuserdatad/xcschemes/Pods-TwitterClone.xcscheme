@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7DBEDCFB1DC1C8AA00CAC6D3"
-               BuildableName = "TwitterClone.app"
-               BlueprintName = "TwitterClone"
-               ReferencedContainer = "container:TwitterClone.xcodeproj">
+               BlueprintIdentifier = "1AC767AFC9AB944411637105D350F710"
+               BuildableName = "Pods_TwitterClone.framework"
+               BlueprintName = "Pods-TwitterClone"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7DBEDCFB1DC1C8AA00CAC6D3"
-            BuildableName = "TwitterClone.app"
-            BlueprintName = "TwitterClone"
-            ReferencedContainer = "container:TwitterClone.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7DBEDCFB1DC1C8AA00CAC6D3"
-            BuildableName = "TwitterClone.app"
-            BlueprintName = "TwitterClone"
-            ReferencedContainer = "container:TwitterClone.xcodeproj">
+            BlueprintIdentifier = "1AC767AFC9AB944411637105D350F710"
+            BuildableName = "Pods_TwitterClone.framework"
+            BlueprintName = "Pods-TwitterClone"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7DBEDCFB1DC1C8AA00CAC6D3"
-            BuildableName = "TwitterClone.app"
-            BlueprintName = "TwitterClone"
-            ReferencedContainer = "container:TwitterClone.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
