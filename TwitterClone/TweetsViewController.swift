@@ -32,8 +32,8 @@ class TweetsViewController: UIViewController {
         
         tableView.dataSource = self
         
-//        tableView.estimatedRowHeight = 150
-//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets:[Tweet]) in
             self.tweets = tweets
@@ -67,17 +67,20 @@ class TweetsViewController: UIViewController {
         })
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "newTweetSegue" {
+            let destinationVC = segue.destination as! UINavigationController
+            let newTweetVC = destinationVC.topViewController as! NewTweetViewController
+            newTweetVC.successfulTweet = { (newTweet:Tweet) -> () in
+                self.tweets.insert(newTweet, at: 0)
+                self.tableView.reloadData()
+            }
+        }
     }
-    */
-
 }
 
 extension TweetsViewController: UITableViewDataSource {
@@ -94,5 +97,6 @@ extension TweetsViewController: UITableViewDataSource {
         return cell
     }
 }
+
 
 
