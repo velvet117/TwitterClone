@@ -35,6 +35,8 @@ class User: NSObject {
     
     static var _currentUser: User?
     
+    
+    //Computed properties
     class var currentUser:User? {
         get {
             if _currentUser == nil {

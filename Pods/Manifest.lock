@@ -1,4 +1,5 @@
 PODS:
+  - AASquaresLoading (1.0.0)
   - AFNetworking (3.0.0):
     - AFNetworking/NSURLSession (= 3.0.0)
     - AFNetworking/Reachability (= 3.0.0)
@@ -18,13 +19,15 @@ PODS:
     - AFNetworking/NSURLSession (~> 3.0.0)
 
 DEPENDENCIES:
+  - AASquaresLoading
   - AFNetworking (= 3.0.0)
   - BDBOAuth1Manager (= 2.0.0)
 
 SPEC CHECKSUMS:
+  AASquaresLoading: 4039c25b61835d6f7c73d2d3382d6960a6039fa5
   AFNetworking: 932ff751f9d6fb1dad0b3af58b7e3ffba0a4e7fd
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
 
-PODFILE CHECKSUM: e61b389e0b5151f83a1a89545468e5e4cfa1f933
+PODFILE CHECKSUM: 8d83b2d4f58eafbe99d7359a027098d6b90284b6
 
 COCOAPODS: 1.1.1

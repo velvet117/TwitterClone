@@ -34,8 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 self.window?.rootViewController = vc
         }
+        self.setupNavigationAppearance()
         
         return true
+    }
+    
+    private func setupNavigationAppearance() {
+        UINavigationBar.appearance().barTintColor = UIColor.twitterLightBlue
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
