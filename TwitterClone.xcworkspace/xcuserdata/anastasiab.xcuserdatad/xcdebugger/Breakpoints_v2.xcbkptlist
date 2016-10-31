@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterClone/NewTweetViewController.swift"
-            timestampString = "499563172.35693"
+            timestampString = "499587197.373119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "configureView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TwitterClone/NewTweetViewController.swift"
-            timestampString = "499559353.431059"
+            filePath = "TwitterClone/TwitterClient.swift"
+            timestampString = "499587197.373119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "onTweetButton(_:)"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "postTweet(success:failure:tweetText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TwitterClone/TwitterClient.swift"
-            timestampString = "499559362.619755"
+            filePath = "TwitterClone/ReplyTweetFirstCell.swift"
+            timestampString = "499594105.069042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "postTweet(success:failure:tweetText:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "onRetweetButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -31,6 +31,7 @@ class TweetsViewController: UIViewController {
         
         
         tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -80,6 +81,14 @@ class TweetsViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        else if segue.identifier == "detailsSegue" {
+            let cell = sender as! TweetCell
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets[indexPath!.row]
+            
+            let viewController = segue.destination as! DetailTweetViewController
+            viewController.tweet = tweet
+        }
     }
 }
 
@@ -98,5 +107,10 @@ extension TweetsViewController: UITableViewDataSource {
     }
 }
 
-
+extension TweetsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
 

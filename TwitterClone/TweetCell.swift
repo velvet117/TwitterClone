@@ -21,6 +21,9 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetView: UIView!
     @IBOutlet weak var retweetHandleLabel: UILabel!
     
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var favoriteCountLabel: UILabel!
+    
     var tweet: Tweet! {
         didSet {
             
@@ -29,6 +32,23 @@ class TweetCell: UITableViewCell {
             }
             
             tweetTextLabel.text = tweet.text
+            
+            //retweet count
+            if tweet.retweetCount == 0 {
+                retweetCountLabel.text = ""
+            }
+            else {
+                retweetCountLabel.text = "\(tweet.retweetCount)"
+            }
+            
+            //favorites count
+            if tweet.favoritesCount == 0 {
+                favoriteCountLabel.text = ""
+            }
+            else {
+                favoriteCountLabel.text = "\(tweet.favoritesCount)"
+            }
+            
             //TODO
            // timeStampLabel.text = tweet.timestamp
             
@@ -39,11 +59,11 @@ class TweetCell: UITableViewCell {
                 profileImageView.setImageWith(user.profileURL!)
             }
             
-            if tweet.retweenCount == 0 {
+            if tweet.retweetCount == 0 {
                 retweetView.isHidden = true
             }
             else {
-                retweetHandleLabel.text = tweet.retweenCount as? String
+                retweetView.isHidden = false
             }
         }
     }

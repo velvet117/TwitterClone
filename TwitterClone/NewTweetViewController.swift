@@ -25,8 +25,7 @@ class NewTweetViewController: UIViewController {
     @IBAction func onTweetButton(_ sender: AnyObject) {
         
         TwitterClient.sharedInstance?.postTweet(success: { (newTweet: Tweet) in
-            
-            print(newTweet)
+
             self.successfulTweet?(newTweet)
             
             self.dismiss(animated: true, completion: nil)
