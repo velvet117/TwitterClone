@@ -39,6 +39,9 @@ class NewTweetViewController: UIViewController {
         super.viewDidLoad()
 
         self.configureView()
+        
+        self.userProfileImageView.layer.cornerRadius = 3
+        self.userProfileImageView.clipsToBounds = true
     }
     
     private func configureView() {
@@ -48,7 +51,11 @@ class NewTweetViewController: UIViewController {
         }
         
         userNameLabel.text = userInfo.name
-        userHandleLabel.text = userInfo.screenName
+        
+        if let screenName = userInfo.screenName {
+            userHandleLabel.text = "@\(screenName)"
+        }
+        
         userProfileImageView.setImageWith(userInfo.profileURL!)
         
         tweetMessageTextView.becomeFirstResponder()

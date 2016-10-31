@@ -21,10 +21,16 @@ class ReplyTweetFirstCell: UITableViewCell {
     
     @IBOutlet weak var onReplyButton: UIButton!
     
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBAction func onRetweetButton(_ sender: AnyObject) {
         
+        self.retweetNumberLabel.text = "\(tweet.retweetCount + 1)"
+        self.retweetButton.isEnabled = false
+        self.retweetButton.alpha = 0.4
+        
         TwitterClient.sharedInstance?.retweet(tweetId: tweet.id!, success: { (tweet: Tweet) in
-            self.retweetNumberLabel.text = "\(tweet.retweetCount + 1)"
+            print("I have retweeted")
             
             }, failure: { (error: Error) in
                 print("error: \(error.localizedDescription)")
@@ -32,6 +38,17 @@ class ReplyTweetFirstCell: UITableViewCell {
     }
     
     @IBAction func onFavoritesButton(_ sender: AnyObject) {
+        
+        self.favoritesNumberLabel.text = "\(tweet.favoritesCount + 1)"
+        self.favoriteButton.alpha = 0.4
+        self.favoriteButton.isEnabled = false
+    
+        TwitterClient.sharedInstance?.addFavorite(tweetId: tweet.id!, success: { (tweet: Tweet) in
+            print("I have favoreted")
+            
+            }, failure: { (error: Error) in
+                print("error: \(error.localizedDescription)")
+        })
     }
     
     var tweet: Tweet! {
@@ -47,7 +64,11 @@ class ReplyTweetFirstCell: UITableViewCell {
             
             if let user = tweet.userInfo {
                 userNameLabel.text = user.name
-                screenNameLabel.text = user.screenName
+                
+                if let screenName = user.screenName {
+                    screenNameLabel.text = "@\(screenName)"
+                }
+                
                 profileImageView.setImageWith(user.profileURL!)
             }
             

@@ -55,7 +55,11 @@ class TweetCell: UITableViewCell {
             
             if let user = tweet.userInfo {
                 fullNameLabel.text = user.name
-                userHandleLabel.text = user.screenName
+                
+                if let screenName = user.screenName {
+                    userHandleLabel.text = "@\(screenName)"
+                }
+                
                 profileImageView.setImageWith(user.profileURL!)
             }
             
