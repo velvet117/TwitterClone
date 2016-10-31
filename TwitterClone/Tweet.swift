@@ -27,13 +27,25 @@ class Tweet: NSObject {
         let timestampString = dictionary["created_at"] as? String
         if let timestampString = timestampString {
             let formatter = DateFormatter()
-            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            timestamp = formatter.date(from: timestampString)
+            formatter.locale = NSLocale.init(localeIdentifier: "en_US_POSIX") as Locale!
+            formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+            self.timestamp = formatter.date(from: timestampString)
         }
         
         if let userDictionary = dictionary["user"] {
             userInfo = User(dictionary: userDictionary as! NSDictionary)
         }
+    }
+    
+    var displayTimeSinceCreated: String {
+        if let timestamp = self.timestamp {
+            let dateComponentsFormatter = DateComponentsFormatter()
+            dateComponentsFormatter.allowedUnits = [.year,.month,.weekOfYear,.day,.hour,.minute,.second]
+            dateComponentsFormatter.maximumUnitCount = 1
+            dateComponentsFormatter.unitsStyle = .abbreviated
+            return dateComponentsFormatter.string(from: timestamp, to: Date()) ?? ""
+        }
+        return ""
     }
     
     class func tweetsWithArray(dictionaries: [NSDictionary]) -> [Tweet] {

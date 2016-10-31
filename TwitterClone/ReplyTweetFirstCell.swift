@@ -18,7 +18,6 @@ class ReplyTweetFirstCell: UITableViewCell {
     @IBOutlet weak var retweetNumberLabel: UILabel!
     @IBOutlet weak var favoritesNumberLabel: UILabel!
     
-    
     @IBOutlet weak var onReplyButton: UIButton!
     
     @IBOutlet weak var retweetButton: UIButton!
@@ -58,9 +57,7 @@ class ReplyTweetFirstCell: UITableViewCell {
             }
             
             tweetTextLabel.text = tweet.text
-            //TODO
-            // timeStampLabel.text = tweet.timestamp
-            
+            timeStampLabel.text = "Created: \(tweet.displayTimeSinceCreated) ago"
             
             if let user = tweet.userInfo {
                 userNameLabel.text = user.name

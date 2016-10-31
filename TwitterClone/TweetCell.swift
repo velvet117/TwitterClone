@@ -10,7 +10,6 @@ import UIKit
 
 class TweetCell: UITableViewCell {
 
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var userHandleLabel: UILabel!
@@ -32,6 +31,7 @@ class TweetCell: UITableViewCell {
             }
             
             tweetTextLabel.text = tweet.text
+            timeStampLabel.text = tweet.displayTimeSinceCreated
             
             //retweet count
             if tweet.retweetCount == 0 {
@@ -48,11 +48,7 @@ class TweetCell: UITableViewCell {
             else {
                 favoriteCountLabel.text = "\(tweet.favoritesCount)"
             }
-            
-            //TODO
-           // timeStampLabel.text = tweet.timestamp
-            
-            
+
             if let user = tweet.userInfo {
                 fullNameLabel.text = user.name
                 
@@ -63,6 +59,7 @@ class TweetCell: UITableViewCell {
                 profileImageView.setImageWith(user.profileURL!)
             }
             
+            //retweet View
             if tweet.retweetCount == 0 {
                 retweetView.isHidden = true
             }
@@ -71,15 +68,12 @@ class TweetCell: UITableViewCell {
             }
         }
     }
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 3
-        
-        
 
     }
 
