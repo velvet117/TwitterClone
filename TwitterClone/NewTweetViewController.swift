@@ -17,10 +17,11 @@ class NewTweetViewController: UIViewController {
     @IBOutlet weak var countdownTextField: UITextField!
     
     let countdownMax:Int = 140
-    let placeholderText = "I am ready for your tweet :)"
+    var placeholderText = "I am ready for your tweet :)"
     var user:User? = User.currentUser
     var successfulTweet: ((Tweet) -> ())?
     var replyTweet: Tweet?
+    var replyMessage: Bool = false
     
     @IBAction func onCancelButton(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -49,12 +50,19 @@ class NewTweetViewController: UIViewController {
         self.userProfileImageView.layer.cornerRadius = 3
         self.userProfileImageView.clipsToBounds = true
         
+        
+        
     }
     
     private func configureView() {
         
         guard let userInfo = user else {
             return
+        }
+        
+        if let replyTweetScreenName = replyTweet?.userInfo?.screenName {
+            replyMessage = true
+            placeholderText = "RT @\(replyTweetScreenName): "
         }
         
         userNameLabel.text = userInfo.name
@@ -65,8 +73,6 @@ class NewTweetViewController: UIViewController {
         
         userProfileImageView.setImageWith(userInfo.profileURL!)
         
-        let countdown = countdownMax - tweetMessageTextView.text.characters.count
-        self.countdownTextField.text = "\(countdown)"
         tweetMessageTextView.text = placeholderText
         tweetMessageTextView.becomeFirstResponder()
     }
@@ -92,16 +98,20 @@ class NewTweetViewController: UIViewController {
 extension NewTweetViewController: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        textView.selectedRange = NSMakeRange(0, 0)
+        if !replyMessage {
+            textView.selectedRange = NSMakeRange(0, 0)
+        }
+        
         return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        if textView.text == placeholderText {
+        if !replyMessage && textView.text == placeholderText {
             textView.text = ""
-            textView.textColor = UIColor.black
         }
+        
+        textView.textColor = UIColor.black
         
         let countdown = self.countdownMax - self.tweetMessageTextView.text.characters.count
         countdownTextField.text = "\(countdown)"

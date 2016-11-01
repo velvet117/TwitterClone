@@ -550,6 +550,9 @@
                                                                 <constraint firstAttribute="width" constant="40" id="zE4-vt-cQf"/>
                                                             </constraints>
                                                             <state key="normal" title="Button" image="replyIcon"/>
+                                                            <connections>
+                                                                <segue destination="LBp-OM-VoB" kind="presentation" identifier="onReplyButtonSegue" id="z9H-Zy-jbb"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWN-jC-l9g">
                                                             <constraints>
@@ -700,6 +703,6 @@
         <image name="replyIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MFS-4G-hUv"/>
+        <segue reference="z9H-Zy-jbb"/>
     </inferredMetricsTieBreakers>
 </document>

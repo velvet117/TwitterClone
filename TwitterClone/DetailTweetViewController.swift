@@ -30,12 +30,11 @@ class DetailTweetViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "replySegue" {
+        if segue.identifier == "replySegue" || segue.identifier == "onReplyButtonSegue" {
             let destinationVC = segue.destination as! UINavigationController
             let newTweetVC = destinationVC.topViewController as! NewTweetViewController
             
             newTweetVC.replyTweet = tweet
-            newTweetVC.user = User.currentUser
         }
     }
 }
