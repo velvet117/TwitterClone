@@ -114,7 +114,7 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kG-eg-mcc">
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@codepath retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOS-2C-Mk0">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="it was retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOS-2C-Mk0">
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -457,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QS5-ZB-7qa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3628" y="-546.47676161919048"/>
+            <point key="canvasLocation" x="3546" y="-562"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="15e-QD-gBn">
@@ -643,7 +643,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tweet" id="1kJ-Hi-ZJh">
-                        <barButtonItem key="rightBarButtonItem" image="replyIcon" id="l5l-mz-UqE"/>
+                        <barButtonItem key="rightBarButtonItem" image="replyIcon" id="l5l-mz-UqE">
+                            <connections>
+                                <segue destination="LBp-OM-VoB" kind="presentation" identifier="replySegue" id="zaf-22-JiJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="EtW-sf-moT" id="CQ6-sV-Snx"/>
@@ -687,7 +691,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzd-9u-66e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2689" y="-546"/>
+            <point key="canvasLocation" x="2719" y="-561"/>
         </scene>
     </scenes>
     <resources>
@@ -695,4 +699,7 @@
         <image name="repeatIcon" width="24" height="24"/>
         <image name="replyIcon" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MFS-4G-hUv"/>
+    </inferredMetricsTieBreakers>
 </document>

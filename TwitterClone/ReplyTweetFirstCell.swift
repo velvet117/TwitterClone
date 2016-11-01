@@ -24,30 +24,57 @@ class ReplyTweetFirstCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBAction func onRetweetButton(_ sender: AnyObject) {
         
-        self.retweetNumberLabel.text = "\(tweet.retweetCount + 1)"
-        self.retweetButton.isEnabled = false
-        self.retweetButton.alpha = 0.4
-        
-        TwitterClient.sharedInstance?.retweet(tweetId: tweet.id!, success: { (tweet: Tweet) in
-            print("I have retweeted")
+        if tweet.retweeted! {
+            self.retweetButton.alpha = 1
+            self.retweetNumberLabel.text = "\(tweet.retweetCount)"
+            tweet.retweeted = false
             
-            }, failure: { (error: Error) in
-                print("error: \(error.localizedDescription)")
-        })
+            TwitterClient.sharedInstance?.unretweet(tweetId: tweet.id!, success: { (tweet: Tweet) in
+                print("I have unretweeted")
+                
+                }, failure: { (error: Error) in
+                    print("error: \(error.localizedDescription)")
+            })
+        }
+        else {
+            self.retweetNumberLabel.text = "\(tweet.retweetCount + 1)"
+            self.retweetButton.alpha = 0.4
+            tweet.retweeted = true
+            
+            TwitterClient.sharedInstance?.retweet(tweetId: tweet.id!, success: { (tweet: Tweet) in
+                print("I have retweeted")
+                
+                }, failure: { (error: Error) in
+                    
+            })
+        }
     }
     
     @IBAction func onFavoritesButton(_ sender: AnyObject) {
         
-        self.favoritesNumberLabel.text = "\(tweet.favoritesCount + 1)"
-        self.favoriteButton.alpha = 0.4
-        self.favoriteButton.isEnabled = false
-    
-        TwitterClient.sharedInstance?.addFavorite(tweetId: tweet.id!, success: { (tweet: Tweet) in
-            print("I have favoreted")
+        if tweet.favorited! {
+            self.favoritesNumberLabel.text = "\(tweet.favoritesCount)"
+            self.favoriteButton.alpha = 1
+            tweet.favorited = false
             
-            }, failure: { (error: Error) in
-                print("error: \(error.localizedDescription)")
-        })
+            TwitterClient.sharedInstance?.unfavorite(tweetId: tweet.id!, success: { (tweet: Tweet) in
+                
+                }, failure: { (error:Error) in
+                    print("error: \(error.localizedDescription)")
+            })
+        }
+        else {
+            self.favoritesNumberLabel.text = "\(tweet.favoritesCount + 1)"
+            self.favoriteButton.alpha = 0.4
+            tweet.favorited = true
+            
+            TwitterClient.sharedInstance?.addFavorite(tweetId: tweet.id!, success: { (tweet: Tweet) in
+                print("I have favoreted")
+                
+                }, failure: { (error: Error) in
+                    print("error: \(error.localizedDescription)")
+            })
+        }
     }
     
     var tweet: Tweet! {
@@ -72,6 +99,14 @@ class ReplyTweetFirstCell: UITableViewCell {
             retweetNumberLabel.text = "\(tweet.retweetCount)"
             
             favoritesNumberLabel.text = "\(tweet.favoritesCount)"
+            
+            if tweet.retweeted! {
+                retweetButton.alpha = 0.4
+            }
+            
+            if tweet.favorited! {
+                favoriteButton.alpha = 0.4
+            }
         }
     }
     
@@ -82,6 +117,8 @@ class ReplyTweetFirstCell: UITableViewCell {
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 3
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

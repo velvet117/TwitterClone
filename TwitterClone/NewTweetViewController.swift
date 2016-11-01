@@ -20,6 +20,7 @@ class NewTweetViewController: UIViewController {
     let placeholderText = "I am ready for your tweet :)"
     var user:User? = User.currentUser
     var successfulTweet: ((Tweet) -> ())?
+    var replyTweet: Tweet?
     
     @IBAction func onCancelButton(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -27,7 +28,7 @@ class NewTweetViewController: UIViewController {
     
     @IBAction func onTweetButton(_ sender: AnyObject) {
         
-        TwitterClient.sharedInstance?.postTweet(success: { (newTweet: Tweet) in
+        TwitterClient.sharedInstance?.postTweetWith(tweetText: self.tweetMessageTextView.text, replyId:0, success: { (newTweet: Tweet) in
 
             self.successfulTweet?(newTweet)
             
@@ -35,7 +36,7 @@ class NewTweetViewController: UIViewController {
             
             }, failure: { (error:Error) in
                 print(error.localizedDescription)
-            }, tweetText: self.tweetMessageTextView.text)
+            })
     }
     
     override func viewDidLoad() {
@@ -99,6 +100,7 @@ extension NewTweetViewController: UITextViewDelegate {
         
         if textView.text == placeholderText {
             textView.text = ""
+            textView.textColor = UIColor.black
         }
         
         let countdown = self.countdownMax - self.tweetMessageTextView.text.characters.count

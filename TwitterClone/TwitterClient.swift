@@ -93,9 +93,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func postTweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetText:String) {
+    func postTweetWith(tweetText:String, replyId:Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
         
-        post("1.1/statuses/update.json", parameters: ["status": tweetText], progress: nil, success: { (task:URLSessionDataTask, response: Any?) in
+        var parameters:[String: AnyObject] = ["status": tweetText as AnyObject]
+        
+        if replyId != 0 {
+            parameters["in_reply_to_status_id"] = replyId as AnyObject
+        }
+        
+        post("1.1/statuses/update.json", parameters: parameters, progress: nil, success: { (task:URLSessionDataTask, response: Any?) in
 
             let tweet = Tweet(dictionary: response as! NSDictionary)
             
@@ -107,6 +113,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func retweet(tweetId: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+        
         post("1.1/statuses/retweet/\(tweetId).json", parameters: nil, progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 
@@ -122,6 +129,25 @@ class TwitterClient: BDBOAuth1SessionManager {
                 
         }) { (task: URLSessionDataTask?, error: Error) in
                 failure(error)
+        }
+    }
+    
+    func unretweet(tweetId: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+        
+        post("1.1/statuses/unretweet/\(tweetId).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+    }
+    
+    func unfavorite(tweetId:Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+        
+        post("1.1/favorites/destroy.json", parameters: ["id": tweetId], progress: nil,
+             success: { (task:URLSessionDataTask, response: Any?) in
+                
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
         }
     }
 }
