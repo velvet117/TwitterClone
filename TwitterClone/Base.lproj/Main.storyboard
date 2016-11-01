@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -429,13 +430,25 @@
                                 <action selector="onCancelButton:" destination="kGB-Ch-EnX" id="Z52-Zc-PLu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="kt6-cQ-9ET">
-                            <connections>
-                                <action selector="onTweetButton:" destination="kGB-Ch-EnX" id="FDh-Nt-0sJ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Tweet" id="kt6-cQ-9ET">
+                                <connections>
+                                    <action selector="onTweetButton:" destination="kGB-Ch-EnX" id="FDh-Nt-0sJ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Countdown" style="plain" id="NbC-Ut-HXj">
+                                <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="140" textAlignment="right" minimumFontSize="17" id="Mbg-MQ-1WN">
+                                    <rect key="frame" x="221" y="7" width="83" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="countdownTextField" destination="Mbg-MQ-1WN" id="twT-DS-Cwd"/>
                         <outlet property="tweetMessageTextView" destination="E2l-xS-rPD" id="7pg-Bp-qHG"/>
                         <outlet property="userHandleLabel" destination="piP-3D-7Y8" id="DJs-l2-dZe"/>
                         <outlet property="userNameLabel" destination="lNw-gL-3ts" id="LGc-CB-1Sh"/>

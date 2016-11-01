@@ -14,7 +14,10 @@ class NewTweetViewController: UIViewController {
     @IBOutlet weak var userHandleLabel: UILabel!
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var tweetMessageTextView: UITextView!
+    @IBOutlet weak var countdownTextField: UITextField!
     
+    let countdownMax:Int = 140
+    let placeholderText = "I am ready for your tweet :)"
     var user:User? = User.currentUser
     var successfulTweet: ((Tweet) -> ())?
     
@@ -37,11 +40,14 @@ class NewTweetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tweetMessageTextView.delegate = self
 
         self.configureView()
         
         self.userProfileImageView.layer.cornerRadius = 3
         self.userProfileImageView.clipsToBounds = true
+        
     }
     
     private func configureView() {
@@ -58,8 +64,10 @@ class NewTweetViewController: UIViewController {
         
         userProfileImageView.setImageWith(userInfo.profileURL!)
         
+        let countdown = countdownMax - tweetMessageTextView.text.characters.count
+        self.countdownTextField.text = "\(countdown)"
+        tweetMessageTextView.text = placeholderText
         tweetMessageTextView.becomeFirstResponder()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,4 +86,31 @@ class NewTweetViewController: UIViewController {
     }
     */
 
+}
+
+extension NewTweetViewController: UITextViewDelegate {
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        textView.selectedRange = NSMakeRange(0, 0)
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if textView.text == placeholderText {
+            textView.text = ""
+        }
+        
+        let countdown = self.countdownMax - self.tweetMessageTextView.text.characters.count
+        countdownTextField.text = "\(countdown)"
+    
+        if countdown < 0 {
+            countdownTextField.textColor = UIColor.red
+        }
+        else {
+            countdownTextField.textColor = UIColor.blue
+        }
+        
+        return true
+    }
 }
