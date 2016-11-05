@@ -16,12 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+       
+        
         if User.currentUser != nil {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             
-            window?.rootViewController = vc
+//            let tweetsViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+//            
+//            window?.rootViewController = tweetsViewController
+            
+            let hamburgerViewController = window?.rootViewController as! HamburgerViewController
+            
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            
+            menuViewController.hamburgerViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+            
         }
         
         NotificationCenter.default.addObserver(
