@@ -23,17 +23,21 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButton(_ sender: AnyObject) {
-        
-        let client = TwitterClient.sharedInstance
-        
-        
-        client?.login(success: { () -> () in
-            print("I've logged in")
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
-            }, failure: { (error) in
-                print("\(error.localizedDescription)")
+        TwitterClient.sharedInstance?.login(success: {() -> ()  in
+            self.performSegue(withIdentifier: "toHamburgerVCSegue", sender: nil)
+            }, failure: {(error: Error) -> () in
+                print("Login Error: \(error.localizedDescription)")
         })
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toHamburgerVCSegue" {
+            let hamburgerViewController = segue.destination as! HamburgerViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            menuViewController.hamburgerViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+        }
     }
 
     /*

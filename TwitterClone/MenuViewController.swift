@@ -12,6 +12,7 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    private var tweetsViewController: UIViewController!
     private var profileViewController: UIViewController!
     private var mentionsViewController: UIViewController!
     
@@ -26,14 +27,15 @@ class MenuViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        let tweetsViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
         let mentionsViewController = storyboard.instantiateViewController(withIdentifier: "MentionsViewController")
         
         viewControllers.append(profileViewController)
+        viewControllers.append(tweetsViewController)
         viewControllers.append(mentionsViewController)
         
-        hamburgerViewController.contentViewController = profileViewController
-        // Do any additional setup after loading the view.
+        hamburgerViewController.contentViewController = tweetsViewController
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,16 +59,18 @@ class MenuViewController: UIViewController {
 extension MenuViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
         
-        let titles = ["Profile", "Mentions"]
+        let titles = ["Profile", "Timeline", "Mentions"]
+        let images = ["", "homeIcon", "mentionsIcon"]
         
         cell.menuTitle.text = titles[indexPath.row]
+        cell.menuIconImageView.image = UIImage(named:images[indexPath.row])
         
         return cell
     }

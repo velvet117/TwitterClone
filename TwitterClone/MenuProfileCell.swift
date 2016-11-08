@@ -1,23 +1,22 @@
 //
-//  MenuCell.swift
+//  MenuProfileCell.swift
 //  TwitterClone
 //
-//  Created by Anastasia Blodgett on 11/4/16.
+//  Created by Anastasia Blodgett on 11/6/16.
 //  Copyright © 2016 Anastasia Blodgett. All rights reserved.
 //
 
 import UIKit
 
-class MenuCell: UITableViewCell {
+class MenuProfileCell: UITableViewCell {
+    
+    @IBOutlet weak var profileImageView: UIImageView!
 
-    
-    @IBOutlet weak var menuIconImageView: UIImageView!
-    
-    @IBOutlet weak var menuTitle: UILabel!
-    
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 

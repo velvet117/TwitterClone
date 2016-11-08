@@ -93,6 +93,25 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func userTimeline(screenName: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        
+        let parameters:[String: AnyObject] = ["screen_name": screenName as AnyObject]
+        
+        get("1.1/statuses/user_timeline.json", parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            print("hometimeline \(response)")
+            
+            let dictionaries = response as! [NSDictionary]
+            
+            let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+            
+            success(tweets)
+            
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                failure(error)
+        })
+    }
+    
+    
     func postTweetWith(tweetText:String, replyId:Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
         
         var parameters:[String: AnyObject] = ["status": tweetText as AnyObject]
@@ -149,5 +168,19 @@ class TwitterClient: BDBOAuth1SessionManager {
         }) { (task: URLSessionDataTask?, error: Error) in
             failure(error)
         }
+    }
+    
+    func mentionsTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        get("1.1/statuses/mentions_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            let dictionaries = response as! [NSDictionary]
+            
+            let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+            
+            success(tweets)
+            
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                failure(error)
+        })
     }
 }
