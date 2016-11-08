@@ -101,6 +101,8 @@ extension TweetsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
+        cell.delegate = self
+        
         cell.tweet = tweets[indexPath.row]
         
         return cell
@@ -111,6 +113,20 @@ extension TweetsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension TweetsViewController: TweetCellDelegate {
+    
+    func userImageDidLoadProfileView(user: User) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        
+        profileVC.user = user
+        
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 

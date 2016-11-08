@@ -14,27 +14,15 @@ class ProfileCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     
+    @IBOutlet weak var userNameLabel: UILabel!
+    
+    @IBOutlet weak var screenNameLabel: UILabel!
+    
+    @IBOutlet weak var tweetCountLabel: UILabel!
+    
+    @IBOutlet weak var followersCountLabel: UILabel!
     
     @IBOutlet weak var borderProfileImageView: UIImageView!
-    var tweet: Tweet! {
-        didSet {
-            
-            guard tweet != nil else {
-                return
-            }
-            
-            if let user = tweet.userInfo {
-                
-                profileImageView.setImageWith(user.profileURL!)
-                
-            }
-            
-        }
-        
-    }
-    
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,8 +37,6 @@ class ProfileCell: UITableViewCell {
         borderProfileImageView.backgroundColor = UIColor.white
         
         
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,5 +44,7 @@ class ProfileCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

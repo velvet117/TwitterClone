@@ -800,7 +800,11 @@
                                         <connections>
                                             <outlet property="borderProfileImageView" destination="nlo-5f-QKd" id="Vdc-z1-YzW"/>
                                             <outlet property="coverImageView" destination="Zyb-qC-cd7" id="jJ9-3h-JNM"/>
+                                            <outlet property="followersCountLabel" destination="OTG-ld-0p6" id="EJM-wQ-yOi"/>
                                             <outlet property="profileImageView" destination="cSz-bx-PPg" id="9HY-b6-BRl"/>
+                                            <outlet property="screenNameLabel" destination="2p9-wF-VH5" id="mWb-Un-8XK"/>
+                                            <outlet property="tweetCountLabel" destination="H0T-ko-QPa" id="dOp-67-Jba"/>
+                                            <outlet property="userNameLabel" destination="SlF-NL-t3k" id="PsX-rE-Bn9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

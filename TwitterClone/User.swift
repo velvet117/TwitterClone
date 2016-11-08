@@ -15,6 +15,8 @@ class User: NSObject {
     var profileURL: URL?
     var coverURL: URL?
     var postedTweetsCount: Int?
+    var followersCount: Int?
+    var followingCount: Int?
     var tagLine: String?
     
     var dictionary:NSDictionary!
@@ -26,7 +28,9 @@ class User: NSObject {
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
         postedTweetsCount = dictionary["statuses_count"] as? Int
-        let profileURLString = dictionary["profile_image_url_https"] as? String
+        followersCount = dictionary["followers_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
+        let profileURLString = (dictionary["profile_image_url_https"] as? String)?.replacingOccurrences(of: "_normal", with: "_bigger")
         let coverURLString = dictionary["profile_banner_url"] as? String
         
         if let profileURLString = profileURLString {

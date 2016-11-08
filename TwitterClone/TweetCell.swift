@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol TweetCellDelegate: class {
+    
+    func userImageDidLoadProfileView(user: User)
+}
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -68,12 +73,18 @@ class TweetCell: UITableViewCell {
             }
         }
     }
+    
+    weak var delegate:TweetCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 3
+        
+        profileImageView.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userProfileClicked))
+        profileImageView.addGestureRecognizer(gestureRecognizer)
 
     }
 
@@ -83,4 +94,7 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func userProfileClicked() {
+        delegate?.userImageDidLoadProfileView(user: tweet.userInfo!)
+    }
 }

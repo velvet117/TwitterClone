@@ -77,6 +77,12 @@ extension ProfileViewController: UITableViewDataSource {
             if let coverURL = user?.coverURL {
                 cell.coverImageView.setImageWith(coverURL)
             }
+            cell.userNameLabel.text = user?.name
+            cell.screenNameLabel.text = user?.screenName
+            if let tweetCount = user?.postedTweetsCount {
+                cell.tweetCountLabel.text = "\(tweetCount)"
+            }
+            
             
             return cell
         }
